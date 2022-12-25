@@ -13,6 +13,7 @@ sv_allowdownload 1
 sv_allowupload 1
 
 tv_enable 1
+tv_autorecord 1
 tv_name "${STV_NAME}"
 tv_title "${STV_TITLE}"
 tv_password "${STV_PASSWORD}"

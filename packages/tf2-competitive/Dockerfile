@@ -31,6 +31,10 @@ ARG RGL_CONFIGS_FILE_NAME=server-resources-updater.zip
 ARG RGL_CONFIGS_VERSION=v117
 ARG RGL_CONFIGS_URL=https://github.com/RGLgg/server-resources-updater/releases/download/${RGL_CONFIGS_VERSION}/${RGL_CONFIGS_FILE_NAME}
 
+# Ozfortress doesn't use a versioned release, so we use the master branch
+ARG OZF_CONFIGS_FILE_NAME=master.zip
+ARG OZF_CONFIGS_URL=https://github.com/ozfortress/server-configs/archive/refs/heads/master.zip
+
 ARG DEMOS_TF_PLUGIN_FILE_NAME=demostf.smx
 ARG DEMOS_TF_PLUGIN_URL=https://github.com/demostf/plugin/raw/master/${DEMOS_TF_PLUGIN_FILE_NAME}
 
@@ -56,7 +60,7 @@ ARG TF2RUE_PLUGIN_URL=https://github.com/sapphonie/tf2rue/releases/download/${TF
 RUN \
   # download all the plugins
   wget -nv "${SOAP_DM_PLUGIN_URL}" "${COMP_FIXES_PLUGIN_URL}" "${UPDATED_PAUSE_PLUGIN_URL}" "${CURL_PLUGIN_URL}" \
-    "${CURL_EXTENSION_URL}" "${ETF2L_CONFIGS_URL}" "${RGL_CONFIGS_URL}" "${DEMOS_TF_PLUGIN_URL}" "${SRCTV_PLUS_SO_URL}" "${SRCTV_PLUS_VDF_URL}" \
+    "${CURL_EXTENSION_URL}" "${ETF2L_CONFIGS_URL}" "${RGL_CONFIGS_URL}" "${OZF_CONFIGS_URL}" "${DEMOS_TF_PLUGIN_URL}" "${SRCTV_PLUS_SO_URL}" "${SRCTV_PLUS_VDF_URL}" \
     "${F2_SOURCEMOD_PLUGINS_URL}" "${TF2RUE_PLUGIN_URL}" \
   && wget -nv "${MGEMOD_PLUGIN_URL}" -O "${MGEMOD_PLUGIN_FILE_NAME}" \
   && wget -nv "${IMPROVED_MATCH_TIMER_PLUGIN_URL}" -O "${IMPROVED_MATCH_TIMER_PLUGIN_FILE_NAME}" \
@@ -70,6 +74,7 @@ RUN \
   && unzip -q -o "${CURL_PLUGIN_FILE_NAME}" -d "${SERVER_DIR}/tf/addons/sourcemod" \
   && unzip -q "${ETF2L_CONFIGS_FILE_NAME}" -d "${SERVER_DIR}/tf/cfg/" \
   && unzip -q "${RGL_CONFIGS_FILE_NAME}" "cfg/*.cfg" && mv "cfg/"* "${SERVER_DIR}/tf/cfg/" \
+  && unzip -q "${OZF_CONFIGS_FILE_NAME}" "server-configs-master/cfg/*.cfg" && mv "server-configs-master/cfg/"* "${SERVER_DIR}/tf/cfg/" \
   && unzip -q "${IMPROVED_MATCH_TIMER_PLUGIN_FILE_NAME}" \
     && mv "Improved-Match-Timer-main/addons/sourcemod/plugins/"*.smx "${SERVER_DIR}/tf/addons/sourcemod/plugins/" \
     && mv "Improved-Match-Timer-main/addons/sourcemod/scripting/"*.sp "${SERVER_DIR}/tf/addons/sourcemod/scripting/" \
@@ -87,6 +92,7 @@ RUN \
   && rm "${CURL_PLUGIN_FILE_NAME}" \
   && rm "${ETF2L_CONFIGS_FILE_NAME}" \
   && rm -r "${RGL_CONFIGS_FILE_NAME}" "cfg" \
+  && rm -r "${OZF_CONFIGS_FILE_NAME}" "server-configs-master" \
   && rm -r "${IMPROVED_MATCH_TIMER_PLUGIN_FILE_NAME}" "Improved-Match-Timer-main" \
   && rm "${F2_SOURCEMOD_PLUGINS_FILE_NAME}" "${TF2RUE_PLUGIN_FILE_NAME}" \
   && rm "checksum.md5" \

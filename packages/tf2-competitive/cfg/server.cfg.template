@@ -24,3 +24,7 @@ logstf_apikey "${LOGS_TF_APIKEY}"
 sm_demostf_apikey "${DEMOS_TF_APIKEY}"
 
 recordstv_path "demos"
+
+alias ozf "exec ozfortress_6v6_5cp"
+alias koth "exec ozfortress_6v6_koth"
+alias gc "exec ozfortress_golden_cap"
