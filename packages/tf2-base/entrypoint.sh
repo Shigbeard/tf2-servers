@@ -44,7 +44,6 @@ faketty $SERVER_DIR/srcds_run \
   +clientport ${CLIENT_PORT} \
   -steamport ${STEAM_PORT} \
   +tv_port ${STV_PORT} \
-  +map ${MAP} \
   ${ADDITIONAL_ARGS} \
   -strictportbind \
   -norestart \

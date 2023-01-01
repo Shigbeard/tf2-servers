@@ -79,7 +79,7 @@ ENV STV_TITLE="A Team Fortress 2 server Source TV"
 ENV STV_PASSWORD=
 ENV ADDITIONAL_ARGS=
 ENV DOWNLOAD_URL="https://dl.serveme.tf/"
-ENV MAP="cp_badlands"
+# ENV MAP="cp_badlands"
 
 WORKDIR $SERVER_DIR
 COPY entrypoint.sh .
